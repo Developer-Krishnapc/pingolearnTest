@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "912079031085",
+    "project_id": "pingolearn-flutter-krishna",
+    "storage_bucket": "pingolearn-flutter-krishna.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912079031085:android:797320c4da58d7348f61a4",
+        "android_client_info": {
+          "package_name": "com.pingolearntest.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDxCUAB8-9BzN9LZVlfTSVurr3gC5l4mM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

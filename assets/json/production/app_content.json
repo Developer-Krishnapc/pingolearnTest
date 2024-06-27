@@ -1,0 +1,18 @@
+{
+    "socialMedia": {
+        "instagram": "",
+        "facebook": "http://facebook.com/duratexindia/",
+        "linkedin": "",
+        "aboutUs": "",
+        "twitter": "",
+        "iOSAppId": "",
+        "androidId": "com.duratex.app"
+    },
+    "updatePageData": {
+        "lottieUrl": "https://firebasestorage.googleapis.com/v0/b/mechmiles-pos-dev.appspot.com/o/update_lottie.json?alt=media&token=72db3627-d02b-428f-914a-7c27e7452bfa"
+    },
+    "hangerLabelTemplate": "^XA ^FO30,20^GB498,283,3^FS ^FO40,30^CF0,20^FD Hanger ID : {_id_} ^FS ^FO40,55^FB470,2^CF0,20^FD Hanger Name : {_h_name_} ^FS ^FO40,100^CF0,20^FD Collection Name : {_c_name_} ^FS ^FO40,125^CF0,20^FD Mill Ref. No. : {_mill_no_} ^FS ^FO40,150^CF0,20^FD Buyer Ref. No. : {_buy_ref_} ^FS ^FO40,175^CF0,20^FD Composition : {_comp_} ^FS ^FO40,200^CF0,20^FD Construction : {_cons_} ^FS ^FO40,225^CF0,20^FD Weight : {_weight_} GSM ^FS ^FO40,250^CF0,20^FD Count : {_count_} Piece ^FS ^FO40,275^CF0,20^FD Width : {_width_} m ^FS ^FO415,180^BQN,2,3^FDQA'{\"id\":{_id_},\"moduleType\":\"Hanger\"} ^FS ^FO400,183^GB128,120,3^FS ^XZ ^XZ",
+    "designLabelTemplate": "^XA ^FO30,20^GB498,283,3^FS ^FO40,30^CF0,20^FD Hanger ID : {_id_} ^FS ^FO40,55^FB470,2^CF0,20^FD Hanger Name : {_h_name_} ^FS ^FO40,100^CF0,20^FD Collection Name : {_c_name_} ^FS ^FO40,125^CF0,20^FD Mill Ref. No. : {_mill_no_} ^FS ^FO40,150^CF0,20^FD Buyer Ref. No. : {_buy_ref_} ^FS ^FO40,175^CF0,20^FD Composition : {_comp_} ^FS ^FO40,200^CF0,20^FD Construction : {_cons_} ^FS ^FO40,225^CF0,20^FD Weight : {_weight_} GSM ^FS ^FO40,250^CF0,20^FD Count : {_count_} Piece ^FS ^FO40,275^CF0,20^FD Width : {_width_} m ^FS ^FO415,180^BQN,2,3^FDQA'{\"id\":{_id_},\"moduleType\":\"Hanger\"} ^FS ^FO400,183^GB128,120,3^FS ^XZ ^XZ",
+    "adminPhone": "02238148136",
+    "adminEmail": "admin@duratexindia.com"
+}
