@@ -1,14 +1,13 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/extension/log.dart';
-import '../../../core/utils/debounce.dart';
+import '../../../core/utils/app_utils.dart';
+import '../../../data/repository/auth.dart';
 import '../../../domain/model/load_error_state.dart';
+import '../../../domain/model/user.dart';
 import '../../routes/app_router.dart';
 import '../../shared/providers/router.dart';
-import 'firebase_instance_provider.dart';
 
 final registrationNotifierProvider =
     StateNotifierProvider<RegistrationNotifier, LoadErrorState<void>>((ref) {
@@ -21,8 +20,6 @@ class RegistrationNotifier extends StateNotifier<LoadErrorState<void>> {
 
   final Ref _ref;
 
-  final debounce = Debounce(millisecond: 1000);
-
   final nameCtrl = TextEditingController();
 
   final emailCtrl = TextEditingController();
@@ -34,42 +31,29 @@ class RegistrationNotifier extends StateNotifier<LoadErrorState<void>> {
   @override
   void dispose() {
     nameCtrl.dispose();
-
     passCtrl.dispose();
     emailCtrl.dispose();
 
     super.dispose();
   }
 
-  Future<void> createUser() async {
+  Future<void> createUser({required BuildContext context}) async {
     if (formKey.currentState?.validate() == true) {
       state = state.copyWith(loading: true, error: '');
-      try {
-        await _ref
-            .read(firebaseAuthInstanceProvider)
-            .createUserWithEmailAndPassword(
-                email: emailCtrl.text.toLowerCase().trim(),
-                password: passCtrl.text.trim());
 
+      final res = await _ref.read(authRepoProvider).createUser(
+          userData: User(
+              email: emailCtrl.text.toLowerCase().trim(),
+              name: nameCtrl.text.trim(),
+              password: passCtrl.text.trim()));
+      res.fold((error) {
+        state = state.copyWith(loading: false, error: error.message);
+      }, (result) {
+        AppUtils.flushBar(context, 'Registration Successfull..',
+            isSuccessPopup: true);
         state = state.copyWith(loading: false, error: '');
-        _ref.read(routerProvider).push(HomeRoute());
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'email-already-in-use') {
-          state = state.copyWith(
-              error: 'The account already exists for this email.',
-              loading: false);
-        } else if (e.code == 'weak-password') {
-          state = state.copyWith(
-              error: 'The password provided is too weak.', loading: false);
-        } else {
-          e.code.logError();
-
-          state = state.copyWith(error: 'Something went wrong', loading: false);
-        }
-      } catch (e) {
-        e.logError();
-        state = state.copyWith(loading: false, error: 'Something went wrong');
-      }
+        _ref.read(routerProvider).replaceAll([const MainRoute()]);
+      });
     }
   }
 }

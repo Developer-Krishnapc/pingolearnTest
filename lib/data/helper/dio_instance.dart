@@ -36,7 +36,8 @@ class DioInstance with DioMixin implements Dio {
   final Token? token;
 
   Future<void> _setUpInterceptor() async {
-    options.headers['Authorization'] = 'Bearer ${token?.accessToken}';
+    options.headers['Authorization'] =
+        'Bearer ${const String.fromEnvironment('NEWS-API-KEY')}';
 
     interceptors.add(LogInterceptorsWrapper());
     interceptors.add(TokenInterceptorsWrapper(_ref));

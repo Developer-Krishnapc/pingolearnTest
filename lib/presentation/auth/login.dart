@@ -12,7 +12,6 @@ import '../shared/components/app_text_theme.dart';
 import '../shared/components/custom_filled_button.dart';
 import '../shared/components/custom_form_field.dart';
 import '../shared/components/input_field_widget.dart';
-import '../shared/gen/assets.gen.dart';
 import '../shared/model/user_state.dart';
 import '../theme/config/app_color.dart';
 import 'providers/login_notifier.dart';
@@ -54,12 +53,12 @@ class _HomePageState extends ConsumerState<LoginPage> {
       backgroundColor: AppColor.lightBackground,
       body: Column(
         children: [
-          const Gap(80),
+          const Gap(40),
           Align(
             child: SizedBox(
               width: context.width,
               child: Text(
-                'e-shop',
+                'My News',
                 style: AppTextTheme.semiBold20.copyWith(
                   color: AppColor.primary,
                   fontWeight: FontWeight.w900,
@@ -79,7 +78,7 @@ class _HomePageState extends ConsumerState<LoginPage> {
                     inputLabel: 'Email',
                     mandatory: true,
                     formField:
-                        CustomFormField.email(controller: notifier.emaiCtrl),
+                        CustomFormField.email(controller: notifier.emailCtrl),
                   ),
                   const Gap(15),
                   InputFieldWidget(
@@ -113,7 +112,7 @@ class _HomePageState extends ConsumerState<LoginPage> {
           RichText(
               textAlign: TextAlign.center,
               text: TextSpan(children: [
-                TextSpan(text: 'New Here? ', style: AppTextTheme.semiBold14),
+                TextSpan(text: 'New Here?  ', style: AppTextTheme.semiBold14),
                 TextSpan(
                     text: 'Signup',
                     style: AppTextTheme.semiBold16
@@ -123,7 +122,7 @@ class _HomePageState extends ConsumerState<LoginPage> {
                         context.replaceRoute(RegistrationRoute());
                       })
               ])),
-          const Gap(80),
+          const Gap(50),
         ],
       ).padHor(15),
     );

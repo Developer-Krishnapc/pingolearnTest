@@ -1,57 +1,40 @@
-import 'dart:io';
-
-import 'package:dio/dio.dart';
-// ignore: depend_on_referenced_packages
-import 'package:http_parser/http_parser.dart';
-import 'package:retrofit/retrofit.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../core/constants/constants.dart';
-import '../../../domain/model/role_model.dart';
+import '../../../core/constants/entity_type.dart';
+import '../../../core/exceptions/app_exception.dart';
+import '../../../core/providers/firestore_provider.dart';
 import '../../../domain/model/user.dart';
-import '../../helper/dio_instance.dart';
-import '../../model/common_success_model.dart';
 
 part 'user_source.g.dart';
 
 @riverpod
 UserSource userSource(UserSourceRef ref) =>
-    UserSource(ref.watch(dioInstanceProvider));
+// ignore: avoid_manual_providers_as_generated_provider_dependency
+    UserSource(db: ref.read(firestoredbProvider));
 
-@RestApi()
-abstract class UserSource {
-  factory UserSource(Dio _dio) => _UserSource(_dio);
+class UserSource {
+  UserSource({required this.db});
+  final FirebaseFirestore db;
 
-  @GET(Constants.getUserById)
-  Future<User> getUserById(@Path() int id);
-  @POST(Constants.getUser)
-  Future<User> getUser(@Body() Map<String, dynamic> body);
-
-  @PUT(Constants.updateUserById)
-  Future<CommonSuccessModel> updateUserById({
-    @Path() required int userId,
-    @Body() required Map<String, dynamic> body,
-  });
-
-  @MultiPart()
-  @POST(Constants.createUser)
-  Future<CommonSuccessModel> createUser({
-    @Part(name: 'data') required String data,
-    @Part(contentType: 'image/jpeg', name: 'image') File? fileData,
-  });
-
-  @POST(Constants.userList)
-  Future<List<User>> userList({
-    @Body() required Map<String, dynamic> body,
-  });
-
-  @GET(Constants.roleList)
-  Future<List<RoleModel>> getRoleList();
-
-  @MultiPart()
-  @PUT(Constants.updateUserProfileImageById)
-  Future<CommonSuccessModel> updateProfileImg({
-    @Part(contentType: 'image/jpeg', name: 'file') required File fileData,
-    @Path() required int userId,
-  });
+  Future<Either<AppException, User>> getUserByEmail(
+      {required String email}) async {
+    try {
+      final data = await db.collection(EntityType.user).doc(email).get();
+      if (data.exists && data.data() != null) {
+        return right(User.fromJson(data.data() ?? {}).copyWith(email: email));
+      } else {
+        return Left(AppException(
+            type: ErrorType.firebaseError, message: 'No user found'));
+      }
+    } on FirebaseException catch (e) {
+      return Left(AppException(message: e.code, type: ErrorType.firebaseError));
+    } catch (e) {
+      return Left(
+          AppException(message: 'Something went wrong', type: ErrorType.other));
+    }
+  }
 }

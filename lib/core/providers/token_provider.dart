@@ -1,6 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../data/source/local/shar_pref.dart';
 import '../../domain/model/token.dart';
 
 part 'token_provider.g.dart';
@@ -12,8 +11,8 @@ class TokenNotifier extends _$TokenNotifier {
     return const Token();
   }
 
-  Future<void> updateToken(Token token) async {
-    await ref.read(sharedPrefProvider).saveToken(token);
-    state = token;
-  }
+  // Future<void> updateToken(Token token) async {
+  //   await ref.read(sharedPrefProvider).saveToken(token);
+  //   state = token;
+  // }
 }

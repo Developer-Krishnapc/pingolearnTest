@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-import '../../core/constants/constants.dart';
-import '../../core/constants/request_options.dart';
 import '../../core/exceptions/app_exception.dart';
 import '../../core/utils/app_utils.dart';
 
@@ -29,17 +27,6 @@ class ErrorInterceptorsWrapper extends QueuedInterceptorsWrapper {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    if (options.path == Constants.exportHanger ||
-        options.path == Constants.exportHangerPDF ||
-        options.path == Constants.exportEnquiry ||
-        options.path == Constants.exportDesign) {
-      handler.next(
-        CustomRequestOptions.fileExportOption(
-          data: options,
-        ),
-      );
-      return;
-    }
     handler.next(options);
   }
 

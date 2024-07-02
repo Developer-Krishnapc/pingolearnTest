@@ -2,10 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../core/exceptions/app_exception.dart';
-import '../../core/extension/future.dart';
-import '../../domain/model/token.dart';
+import '../../domain/model/user.dart';
 import '../../domain/repository/auth.dart';
-import '../model/generate_token_res.dart';
 import '../source/remote/auth.dart';
 
 part 'auth.g.dart';
@@ -20,28 +18,12 @@ class AuthRepositoryImpl implements AuthRepository {
   final AuthSource _source;
 
   @override
-  Future<Either<AppException, GenerateTokenRes>> generateToken({
-    required String username,
-    required String password,
-  }) {
-    final token = _source.generateToken(
-      {
-        'username': username,
-        'password': password,
-        'login_panel': 'ADMIN',
-      },
-    );
-    return token.guardFuture();
+  Future<Either<AppException, String>> createUser({required User userData}) {
+    return _source.registerUser(userData: userData);
   }
 
   @override
-  Future<Either<AppException, Token>> refreshToken(String token) {
-    return _source.refreshToken({'refresh_token': token}).guardFuture();
-  }
-
-  @override
-  Future<Either<AppException, bool>> checkServerConnection() async {
-    // TODO('Developer'): Call the api for checking the
-    return right(true);
+  Future<Either<AppException, String>> loginUser({required User userData}) {
+    return _source.loginUser(userData: userData);
   }
 }

@@ -3,18 +3,15 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/extension/widget.dart';
 import '../auth/providers/firebase_instance_provider.dart';
+import '../profile/providers/user_notifier.dart';
 import '../routes/app_router.dart';
 import '../shared/components/custom_dialog.dart';
-import '../shared/gen/assets.gen.dart';
 import '../shared/providers/router.dart';
 import '../theme/config/app_color.dart';
-import 'section/bottom_nav_bar.dart';
 
 @RoutePage()
 class MainPage extends ConsumerStatefulWidget {
@@ -27,14 +24,13 @@ class MainPage extends ConsumerStatefulWidget {
 class _MainPageState extends ConsumerState<MainPage> {
   @override
   void initState() {
-    ref
-        .read(firebaseAuthInstanceProvider)
-        .authStateChanges()
-        .listen((User? data) {
-      if (data == null) {
-        ref.read(routerProvider).replaceAll([LoginRoute()]);
-      }
+    if (ref.read(firebaseAuthInstanceProvider).currentUser == null) {
+      ref.read(routerProvider).replaceAll([const LoginRoute()]);
+    }
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      ref.read(userNotifierProvider.notifier).getUser();
     });
+
     super.initState();
   }
 
@@ -57,7 +53,7 @@ class _MainPageState extends ConsumerState<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0.0;
+    ref.read(userNotifierProvider);
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Container(
@@ -68,17 +64,8 @@ class _MainPageState extends ConsumerState<MainPage> {
           minimum: (Platform.isIOS)
               ? const EdgeInsets.only(bottom: 10)
               : EdgeInsets.zero,
-          child: AutoTabsScaffold(
-            routes: const [
-              HomeRoute(),
-              HangerRoute(),
-              EnquiryRoute(),
-              MoreRoute(),
-            ],
-            bottomNavigationBuilder: (context, tabsRouter) => BottomNavBar(
-              selected: tabsRouter.activeIndex,
-              onTabChanged: tabsRouter.setActiveIndex,
-            ),
+          child: const AutoTabsScaffold(
+            routes: [HomeRoute()],
           ),
         ),
       ),

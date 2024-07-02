@@ -3,6 +3,7 @@ enum ErrorType {
   network,
   timeout,
   responseError,
+  firebaseError,
   other,
 }
 

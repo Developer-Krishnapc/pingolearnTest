@@ -5,7 +5,7 @@ android-build-dev:
 	fvm flutter build apk --flavor development --dart-define-from-file=./env/dev.json --release
 
 android-build-prod:
-	fvm flutter build apk --flavor production --target lib/main.dart --dart-define=FLAVOR=production --release
+	fvm flutter build apk --flavor production --dart-define-from-file=./env/prod.json --release
 
 android-dev-bundle:
 	fvm flutter build appbundle --release --flavor development --target lib/main.dart --dart-define=FLAVOR=development --release

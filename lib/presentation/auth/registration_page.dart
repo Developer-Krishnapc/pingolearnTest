@@ -56,12 +56,12 @@ class _HomePageState extends ConsumerState<RegistrationPage> {
       backgroundColor: AppColor.lightBackground,
       body: Column(
         children: [
-          const Gap(60),
+          const Gap(40),
           Align(
             child: SizedBox(
               width: context.width,
               child: Text(
-                'e-shop',
+                'My News',
                 style: AppTextTheme.semiBold20.copyWith(
                   color: AppColor.primary,
                   fontWeight: FontWeight.w900,
@@ -114,7 +114,7 @@ class _HomePageState extends ConsumerState<RegistrationPage> {
                   title: 'Signup',
                   isLoading: loadingState,
                   onTap: () {
-                    notifier.createUser();
+                    notifier.createUser(context: context);
                   },
                 ),
               );
