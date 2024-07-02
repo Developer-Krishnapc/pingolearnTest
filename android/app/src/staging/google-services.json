@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "740421527318",
+    "project_id": "weq-flutter-master",
+    "storage_bucket": "weq-flutter-master.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740421527318:android:eb80748c30365902f81237",
+        "android_client_info": {
+          "package_name": "com.weq.flutter.master.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdu5La03D0tamh4q2bUXiFvNHG7zZTA8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

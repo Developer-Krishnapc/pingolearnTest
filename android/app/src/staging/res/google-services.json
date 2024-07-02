@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1024604417895",
+    "project_id": "weq-master-dev",
+    "storage_bucket": "weq-master-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024604417895:android:351dd1950bcca7550009c2",
+        "android_client_info": {
+          "package_name": "com.weq.flutter.master.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024604417895-j327uf79rg1umrfd2k28vpifbbocvbn9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNdKCo6Nx7l8F92AGCcrC3RmPXIv1cTQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024604417895-j327uf79rg1umrfd2k28vpifbbocvbn9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1024604417895-u1747932sldn3o95ksrnb9q5i1jc197s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.weq.flutter.master.dev"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

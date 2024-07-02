@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDHdV3gFL2v7cjOy8kQUtvuh-SuNRyrG2w</string>
+	<key>GCM_SENDER_ID</key>
+	<string>740421527318</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.weq.flutter.master.dev</string>
+	<key>PROJECT_ID</key>
+	<string>weq-flutter-master</string>
+	<key>STORAGE_BUCKET</key>
+	<string>weq-flutter-master.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:740421527318:ios:49a7e6eb08e6aaf6f81237</string>
+</dict>
+</plist>
